@@ -1,0 +1,16 @@
+#!/bin/bash
+
+domain="localhost:6969"
+path="$HOME/Documents/VsCode/wayland-picture-in-picture/main"
+
+pids=$(pgrep -f $domain)
+
+if [ -z "$pids" ]
+then
+	php -S $domain -t $path &
+	python "$path/../main.py" "http://$domain/index.html" &
+else
+	for pid in $pids; do
+		kill $pid
+	done
+fi

@@ -24,12 +24,12 @@ HTML = """
         <style>
             #draggable {
                 position: absolute;
-                width: 25%;
+                width: 100%;
                 aspect-ratio: 16/9;
                 object-fit: cover;
                 resize: horizontal;
                 overflow: auto;
-                opacity: 1.0;
+                opacity: 1;
             }
 
         </style>
@@ -146,16 +146,14 @@ class Overlay(Gtk.Window):
         GtkLayerShell.set_anchor(self, GtkLayerShell.Edge.RIGHT, True)
         GtkLayerShell.set_anchor(self, GtkLayerShell.Edge.BOTTOM, True)
         GtkLayerShell.set_anchor(self, GtkLayerShell.Edge.TOP, True)
-        GtkLayerShell.set_keyboard_interactivity(self, touchable)
+        GtkLayerShell.set_keyboard_interactivity(self, False)
 
         self.screen = self.get_screen()
 
-        self._touchable = touchable
-        if not touchable:
-            self.set_input_shape()
+        self.set_input_shape()
 
         self.connect("key-release-event", self.on_key_release_event)
-
+    
     def set_input_shape(self):
         """
         Create a custom input shape and tell it that all of the window is a cut-out
@@ -181,13 +179,12 @@ class Overlay(Gtk.Window):
 
     @property
     def touchable(self):
-        return self._touchable
+        return False 
 
     @touchable.setter
     def set_touchable(self, touchable):
-        self._touchable = touchable
-        if not touchable:
-            self.set_input_shape()
+        self._touchable = False
+        self.set_input_shape()
 
     def on_key_release_event(self, widget, event):
         pass
