@@ -9,3 +9,6 @@
 ## Motivation behind this
 ### Really liked the gnome extensions that makes it snow on your screen (https://github.com/ExposedCat/snowy) but couldn't use it, because im on sway.
 ### Came across the wayland-picture-in-picture repository
+
+## If you want to use this you need to add a gif with the name snowing.gif inside the main directory 
+### (You can do way more than just use this with a transparent gif but this is my use case for this)
